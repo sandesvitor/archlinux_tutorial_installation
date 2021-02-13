@@ -8,12 +8,14 @@ I will use his video topics for organizing the blocks, and insert a few things h
 
 One of my goals is to be able to, at the end of this lessons, manage to format my desktop (I'm using Pop-Os) with an top of the notch Arch Linux, with all the funtionallyties that I have now (like gaming, for instance, with an NVIDEA GPU). 
 
-![](images/arch_0.png)
+Also, last but not least, the Official Wiki from ArchLinux https://wiki.archlinux.org/index.php/installation_guide.
+
 
 ### NOTE!
 
 If you are installing Arch Linux in a virtual machine (using Virtualbox as a Hyper Visor, for instance), you'll need to enable the EFI in your setting BEFORE comencing the boot process.
 
+![](images/arch_0.png)
 
 
 ## **1. Creating bootable USB flash drive**:
@@ -24,7 +26,7 @@ All devices are mounted in the /dev folder. In Linux, if we want to make a USB f
 [~]$ dd if=archlinux-2021.02.01-x86_64.iso of=/dev/usb bs=4M status=progress && sync
 ```
 
-The **if** block is where you pass the .iso path, and the **to** block is where you pass the **flash driver device location**. The second command **sync** write any buffered data in memory to the disk, and in this case will boot the computer from the USB.
+The **if** (input file) block is where you pass the .iso path, and the **of** (output file) block is where you pass the **flash driver device location**. The second command **sync** write any buffered data in memory to the disk, and in this case will boot the computer from the USB.
 
 
 ## **2. Starting the installation process**:
@@ -551,17 +553,232 @@ Now, we'll edit the hosts file:
 # See hosts(5) for details.
 127.0.0.1       localhost
 ::1             localhost
-127.0.0.1       archvirtualbox.localdomain  archvirtualbox
+127.0.0.1       archvirtualbox.localdomain	  archvirtualbox
 ```
 Save and exit with "Esc + :wq".
 
-Next step is to 
+Next step is to set the proper timezone.
+
+To check which timezone better suit you, you can use **timedatectl list-timezones** for the job, along side with **grep**.
+
+```shell
+[root@archlinux ~]# timedatectl list-timezones 
+Africa/Abidjan
+Africa/Accra
+Africa/Algiers
+Africa/Bissau
+Africa/Cairo
+Africa/Casablanca
+Africa/Ceuta
+Africa/El_Aaiun
+Africa/Johannesburg
+Africa/Juba
+Africa/Khartoum
+Africa/Lagos
+Africa/Maputo
+Africa/Monrovia
+--MORE--
+```
+
+In my case, I used Sao_Paulo time zone:
+
+```shell
+[root@archlinux ~]# timedatectl list-timezones | grep Sao_Paulo     
+America/Sao_Paulo
+```
+
+Make a soft link between the timezone folder (/usr/share/zoneinfo/America/Sao_Paulo) and /etc/localtime.
+
+```shell
+[root@archlinux ~]# ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+```
+
+Syncronize the **hardware clock** with the **system clock** by using **hwclock**.
 
 
 ```shell
-[root@archlinux ~]# timedatectl set-ntp
+[root@archlinux ~]# hwclock --systohc
 ```
 
+And enable network time protocol service, to syncronize our system clock with internet time services.
+
+```shell
+[root@archlinux ~]# timedatectl set-ntp true
+```
+
+So, lets check if everything is running smotly:
+
+```shell
+[root@archlinux ~]# timedatectl status
+               Local time: Sat 2021-02-13 16:32:24 -03   
+           Universal time: Sat 2021-02-13 19:32:24 UTC   
+                 RTC time: Sat 2021-02-13 19:32:25       
+                Time zone: America/Sao_Paulo (-03, -0300)
+System clock synchronized: yes                           
+              NTP service: active                        
+          RTC in local TZ: no  
+```
+
+There we go! We can check our timezone, system clock syncronization and NTP service.
+
+---
+
+Now we will set up our **system locale**, to enable applications in our machine to correctly display **time**, **date** and **monitor regional values**.
+
+Firstly, lets open with Vim the locale configuration file:
+
+```shell
+[root@archlinux ~]# vim /etc/locale.gen
+```
+
+Now, you just have to uncomment the one that you need. In my case, I want **en_US.UTF-8**. If you want to find someother locale, using Vim just press "Esc + "/" + "text_to_search" + Enter".
+
+Lets use **locale-gen** to generate the locales.
+
+```shell
+[root@archlinux ~]# locale-gen
+Generating locales...
+  en_US.UTF-8... done
+Generation complete.
+```
+
+Great, now we're going to create locale.conf file with this information:
+
+```shell
+[root@archlinux ~]# echo LANG=en_US.UTF-8 >> /etc/locale.conf
+```
+
+And also the keymap that we are using throut this whole installation:
+
+```shell
+[root@archlinux ~]# echo KEYMAP=br-abnt2 >> /etc/vconsole.conf
+```
+
+---
+
+### *Swap File*:
+
+For creating our swap file, *cd* to the root directory (/) and create ans empty file called swapfile
+
+```shell
+cd /
+touch swapfile
+```
+
+Now, we will use the **dd**\* command, to inflate the file with zeros to the size that we want (where the **if** clock is the input file and the **of** block is the path of the newly created swapfile).
+
+\* since recent changes in the kernel we are using the **dd** command and not the **fallocate** command.
+
+```shell
+[root@archlinux /]# dd if=/dev/zero of=/swapfile bs=1M count=1000
+1000+0 records in
+1000+0 records out
+1048576000 bytes (1.0 GB, 1000 MiB) copied, 0.97697 s, 1.1 GB/s
+```
+
+In this case, we are creating a 1000 1M blocks, resulting in a swap of 1G.
+
+Use the chmod to change the permission on the file (*600*, indicating that root user can only **read** and **write** but not **execute**, and **group** and **others** doesn't have any permission).
+
+Check it by using the ls -lah command:
+
+```shell
+[root@archlinux /]# ls -alh
+total 1001M
+drwxr-xr-x  17 root root  4.0K Feb 13 16:51 .
+drwxr-xr-x  17 root root  4.0K Feb 13 16:51 ..
+lrwxrwxrwx   1 root root     7 Jan 18 22:32 bin -> usr/bin
+drwxr-xr-x   4 root root  4.0K Feb 12 15:17 boot
+drwxr-xr-x  18 root root  3.1K Feb 13 16:13 dev
+drwxr-xr-x  39 root root  4.0K Feb 13 16:43 etc
+drwxr-xr-x   3 root root  4.0K Feb 12 15:02 home
+lrwxrwxrwx   1 root root     7 Jan 18 22:32 lib -> usr/lib
+lrwxrwxrwx   1 root root     7 Jan 18 22:32 lib64 -> usr/lib
+drwx------   2 root root   16K Feb 12 15:02 lost+found
+drwxr-xr-x   2 root root  4.0K Jan 18 22:32 mnt
+drwxr-xr-x   2 root root  4.0K Jan 18 22:32 opt
+dr-xr-xr-x 131 root root     0 Feb 13 16:13 proc
+drwxr-x---   4 root root  4.0K Feb 13 16:39 root
+drwxr-xr-x  17 root root   440 Feb 13 16:17 run
+lrwxrwxrwx   1 root root     7 Jan 18 22:32 sbin -> usr/bin
+drwxr-xr-x   4 root root  4.0K Feb 12 15:09 srv
+-rw-------   1 root root 1000M Feb 13 16:51 swapfile
+dr-xr-xr-x  13 root root     0 Feb 13 16:12 sys
+drwxrwxrwt   9 root root   180 Feb 13 16:32 tmp
+drwxr-xr-x  10 root root  4.0K Feb 12 15:20 usr
+drwxr-xr-x  12 root root  4.0K Feb 12 18:10 var
+```
+
+But this is just an empty file with the size of 1G of zeros. Now we need to convert it into an actual swap file, using **mkswap**.
+
+```shell
+[root@archlinux /]# mkswap swapfile 
+Setting up swapspace version 1, size = 1000 MiB (1048571904 bytes)
+no label, UUID=91895b3b-1f06-4bc0-bc61-c64f11491d73
+```
+
+Before we activate it, lets check our memory distribution:
+
+```shell
+[root@archlinux /]# free -m
+              total        used        free      shared  buff/cache   available
+Mem:           1977          68         781           0        1127        1757
+Swap:             0           0           0
+```
+
+Now, lets imediatly activate the swap memory:
+
+```shell
+[root@archlinux /]# swapon /swapfile
+```
+
+And check it again:
+
+```shell
+[root@archlinux /]# free -m
+              total        used        free      shared  buff/cache   available
+Mem:           1977          68         779           0        1129        1757
+Swap:           999           0         999
+```
+
+All good. But remember, this changes are not enabled to persist in our system. So, if we want the swapfile to be loaded automatically everytime our system starts, we will need to make an entry in our **fstab** file.
+
+```shell
+[root@archlinux /]# vim /etc/fstab
+```
+
+Insert the swapfile entry:
+- \<file system\> = /swapfile
+- \<dir\> = none
+- \<type\> = swap
+- \<options\> = sw
+- \<dump\> = 0
+- \<pass\> = 0
+
+```vim
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/sda2
+UUID=26f0de7b-2541-48b6-a599-290acfff65fc	/         	ext4      	rw,relatime	0 1
+
+# /dev/sda1
+UUID=2A9C-03BC      	/boot/efi 	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /dev/sda3
+UUID=bd284325-498c-42f2-ad52-2d19a1904ebb	/home     	ext4      	rw,relatime	0 2
+
+/swapfile	none	swap	sw	0	0
+```
+
+Now reboot the system:
+
+```shell
+[root@archlinux /]# reboot
+```
+
+---
 
 ## **5. Setting up custom environment variables (.bashrc basic settings)**:
 
