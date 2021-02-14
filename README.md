@@ -1107,10 +1107,9 @@ Reboot the system and you should be greeted by your desktop manager.
 
 From here, if everything ran ok, you should be greeted by the Gnome GUI and Lightdm Webkit 2.
 
-
 ![](images/arch_15.png)
 
-Clicking the user, on the bottom right corner you can choose the section (I choose Gnome Xorg).
+You should notice that I alread modify the background image, selecting an image from the right menu. Clicking the user, on the bottom left corner of the center box, you can choose the session (I choose Gnome Xorg).
 
 ![](images/arch_16.png)
 
@@ -1118,7 +1117,25 @@ This is the most subjective part, and you should tweak around in Gnome to make t
 
 For now, you can just follow along to see how I configure my environmet.
 
-Go to **Activity** > **Settings** >
+Go to **Activity** > **Settings**
+
+![](images/arch_17.png)
+
+Firtly, lets change the theme to a dark theme.
+
+![](images/arch_18.png)
+
+![](images/arch_19.png)
+
+I like to create a shortcut to open a terminal, using the "Windows Key" or "Super" + "T".
+
+![](images/arch_20.png)
+
+I removed English and added Protuguese (Brazil) to keyboard input, enabling my br-abnt2 keyboard.
+
+![](images/arch_21.png)
+
+
 
 
 
