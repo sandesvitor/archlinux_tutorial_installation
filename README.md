@@ -422,13 +422,24 @@ Installation finished. No error reported.
 ```
 \* in this phase, if you are using Virtualbox and did not enable the EFI option the bootloader installation will fail.
 
-In here, we can edit the grub file to match you needs. Use Vim to access the file in /etc/default/grub (this is completely optional).
+In here, we can edit the grub file to match you needs. Use Vim to access the file in **/etc/default/grub** (this is completely optional).
 
-You can change, for instance, the resolution from **auto** to your native monitor resolution. If you don't know what your native monitor resolution is, type:
+You can change, for instance, the resolution from **auto** to your native monitor resolution. 
+
+Find *GRUB_GFXMODE=auto* and change it to your native resolution: 
+
+If you don't know what your native monitor resolution is, type:
 
 ```shell
 [$] xdpyinfo| grep dimensions
   dimensions:    1920x1080 pixels (483x272 millimeters)
+```
+
+```vim
+# The resolution used on graphical terminal
+# note that you can use only modes which your graphic card supports via VBE
+# you can see them in real GRUB with the command 'vbeinfo'
+GRUB_GFXMODE=1920x1080
 ```
 
 Save your changes with "Esc + :wq".
@@ -1002,7 +1013,7 @@ Press Enter to every default option.
 
 ---
 
-For the **desktop manager** you should have a lot of options, such as **KDE**, **GDM** or **LightDM**. As I prefer a more lighweight, extensible and good looking desktop, I chose the lighdm desktop manager. The **lightdm. 
+For the **desktop manager** you should have a lot of options, such as **KDE**, **GDM** or **LightDM**. As I prefer a more lighweight, extensible and good looking desktop, I chose the lightdm desktop manager. The **lightdm. 
 
 If you choose **GDM**, just enable it and you are good to go:
 
@@ -1010,7 +1021,7 @@ If you choose **GDM**, just enable it and you are good to go:
 [root@archvb conf.d]# systemctl enable gdm
 ```
 
-But, if you choose **LighDM** follow the instructions bellow. 
+But, if you choose **LightDM** follow the instructions bellow. 
 
 Arch Wiki has a full article on LightDM (as it does on GDM): https://wiki.archlinux.org/index.php/LightDM. You should check it out for the installation.
 
@@ -1164,7 +1175,7 @@ makepkg -sri
 After that, run Vim as sudo to edit lightdm-webkit2-greete.conf.
 
 ```shell
-sandesvitor@archvb ~/AUR $ sudo vim /etc/lightdm/lighdm-webkit2-greeter.conf
+sandesvitor@archvb ~/AUR $ sudo vim /etc/lightdm/lightdm-webkit2-greeter.conf
 ```
 
 Find *webkit_theme* then set its value to *glorious*.
