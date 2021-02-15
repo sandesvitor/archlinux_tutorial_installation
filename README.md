@@ -841,14 +841,14 @@ First, check if **git** is alread insatlled, by typing *git --version*. Navigate
 [root@archvb ~]# cd /tmp && git clone https://github.com/sandesvitor/archlinux_tutorial_installation.git
 ```
 
-Now, copy the **.bashrc** file to the /etc/skel, and the **DIR_COLORS** file to /etc/.
+**cd** into the cloned repository and copy both the **.bashrc** file to the /etc/skel, and the **DIR_COLORS** file to /etc/.
 
 ```shell
-[root@archvb tmp]# cp ./config.d/.bashrc /etc/skel/ && cp ./config.d/DIR_COLORS /etc/
+[root@archvb /tmp/archlinux_tutorial_installation]# cp ./config.d/.bashrc /etc/skel/ && cp ./config.d/DIR_COLORS /etc/
 ```
 --- 
 
-Now copy every file in the /etc/skel to the home of the root user.
+**cd** to */etc/skel* and copy every file in the /etc/skel to the home of the root user.
 
 ```shell
 [root@archvb skel]# cp -a . ~
@@ -1067,11 +1067,12 @@ This is the most subjective part, and you should tweak around in Gnome to make t
 
 For now, you can just follow along to see how I configure my environmet.
 
-Go to **Activity** > **Settings**
+
+Firtly, lets change the theme to a dark theme. Click the "Super Key" ("Windows Key") and type *tweaks* in the search bar.
 
 ![](images/arch_17.png)
 
-Firtly, lets change the theme to a dark theme.
+Now, go to **Activity** > **Settings**
 
 ![](images/arch_18.png)
 
@@ -1179,7 +1180,7 @@ Nice touch, right?
 
 ---
 
-Another cool tool is **ulauncher** (https://ulauncher.io/), a really usefull and git adminimalist search bar taht combine with Just Perfection extension. Since we alread use AUR to download glorious theme, this will be easy.
+Another cool tool is **ulauncher** (https://ulauncher.io/), a really usefull and minimalist search bar that combines with Just Perfection extension. Since we alread use AUR to download glorious theme, this will be easy.
 
 ```shell
 sandesvitor@archvb ~ $ cd AUR
