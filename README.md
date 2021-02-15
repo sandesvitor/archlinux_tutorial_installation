@@ -6,7 +6,7 @@ This is not intended to be a ripoff, just a form of me organising ideias and, if
 
 I will use his video topics to organize the blocks, and insert a few things here and there that I found different or just more suitable for my case (which may not be yours, so keep that in mind).
 
-One of my goals is to be able to, at the end of this lesson, format my desktop (I'm using Pop-Os) with a top-notch Arch Linux, with all the funtionalities that I have now (like gaming, for instance, with an NVIDEA GPU). 
+One of my goals is to be able to, at the end of this lesson, format my desktop (I'm using Pop-Os!) with a top-notch Arch Linux, with all the funtionalities that I have now (like gaming, for instance, with an NVIDEA GPU). 
 
 Last but not least, don't forget to visit the Official Wiki from ArchLinux https://wiki.archlinux.org/index.php/installation_guide.
 
@@ -1111,7 +1111,7 @@ After the installation, just search for any extension that you see fit. In my ca
 
 ----
 
-For my terminal, I updated my profile with the same color pallets as Pop-Os default gnome-terminal.
+For my terminal, I updated my profile with the same color pallets as Pop-Os! default gnome-terminal.
 
 ![](images/arch_23.png)
 
@@ -1168,6 +1168,24 @@ sandesvitor@archvb ~/AUR $ sudo vim /etc/lightdm/lighdm-webkit2-greeter.conf
 
 Find *webkit_theme* then set its value to *glorious*.
 Find *debug_mode* then set it to *true*.
+
+---
+
+Another cool tool is **ulauncgher** (https://ulauncher.io/). Since we alread use AUR to download glorious theme, this will be easy.
+
+```shell
+sandesvitor@archvb ~ $ cd AUR
+```
+
+```shell
+sandesvitor@archvb ~/AUR $ git clone https://aur.archlinux.org/ulauncher.git && cd ulauncher && makepkg -is
+```
+
+The default shortcut for **ulauncher** is Ctrl + Space, but you can change that, along with it's themes, in the settings icon when ulauncher is opened.
+
+Now, last but not least, since I love System 76 Pop-Os's! theme (as you might have notice by my gnoeme-terminal configuration), I'll leave a .png image of my favorite Pop-Os! backgraund image.
+
+![](images/arch_30.png)
 
 
 ----
