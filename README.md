@@ -789,7 +789,11 @@ Now reboot the system:
 
 Lets make a few general environment modification that will affect every user.
 
-Firtly, let's edit .bashrc to configure our shell /bin/bash (if you want to make zsh your custom shell, you will need to download zsh and modify the .zshrc)
+As we did in the pacman mirrorlist at the beginning, we can use two methods for this:
+
+### **METHOD 1**:
+
+Firtly, let's edit .bashrc to configure our shell /bin/bash.
 
 ```shell
 [root@archvb /]# cd /etc/skel
@@ -826,6 +830,23 @@ alias frep='frep --color=auto'
 
 PS1='[\u@\h \W]\$ '
 ```
+
+### **METHOD 2**:
+
+If you want to tune up your bash, you may notice the **config.d** folder in this repository. In there, I copy two configuration files that should do the trick (I got those in this [article](https://wiki.archlinux.org/index.php/User:Grufo/Color_System%27s_Bash_Prompt) on the Arch Wiki.
+
+First, check if **git** is alread insatlled, by typing *git --version*. Navigate to the temp folder and clone this repository:
+
+```shell
+[root@archvb ~]# cd /tmp && git clone https://github.com/sandesvitor/archlinux_tutorial_installation.git
+```
+
+Now, copy the **.bashrc** file to the /etc/skel, and the **DIR_COLORS** file to /etc/.
+
+```shell
+[root@archvb tmp]# cp ./config.d/.bashrc /etc/skel/ && cp ./config.d/DIR_COLORS /etc/
+```
+--- 
 
 Now copy every file in the /etc/skel to the home of the root user.
 
@@ -883,77 +904,6 @@ We will install the xorg full package.
 
 ```shell
 [root@archvb ~]# pacman -S xorg
-:: There are 48 members in group xorg:
-:: Repository extra
-   1) xf86-video-vesa  2) xorg-bdftopcf  3) xorg-docs  4) xorg-font-util
-   5) xorg-fonts-100dpi  6) xorg-fonts-75dpi  7) xorg-fonts-encodings
-   8) xorg-iceauth  9) xorg-mkfontscale  10) xorg-server
-   11) xorg-server-common  12) xorg-server-devel  13) xorg-server-xephyr
-   14) xorg-server-xnest  15) xorg-server-xvfb  16) xorg-sessreg
-   17) xorg-setxkbmap  18) xorg-smproxy  19) xorg-x11perf  20) xorg-xauth
-   21) xorg-xbacklight  22) xorg-xcmsdb  23) xorg-xcursorgen  24) xorg-xdpyinfo
-   25) xorg-xdriinfo  26) xorg-xev  27) xorg-xgamma  28) xorg-xhost
-   29) xorg-xinput  30) xorg-xkbcomp  31) xorg-xkbevd  32) xorg-xkbutils
-   33) xorg-xkill  34) xorg-xlsatoms  35) xorg-xlsclients  36) xorg-xmodmap
-   37) xorg-xpr  38) xorg-xprop  39) xorg-xrandr  40) xorg-xrdb
-   41) xorg-xrefresh  42) xorg-xset  43) xorg-xsetroot  44) xorg-xvinfo
-   45) xorg-xwayland  46) xorg-xwd  47) xorg-xwininfo  48) xorg-xwud
-
-Enter a selection (default=all): 
-resolving dependencies...
-looking for conflicting packages...
-warning: dependency cycle detected:
-warning: harfbuzz will be installed before its freetype2 dependency
-warning: dependency cycle detected:
-warning: mesa will be installed before its libglvnd dependency
-
-Packages (111) fontconfig-2:2.13.91+48+gfcb0420-2  freetype2-2.10.4-1
-               graphite-1:1.3.14-1  harfbuzz-2.7.4-1  libdrm-2.4.104-1
-               libepoxy-1.5.5-1  libevdev-1.11.0-1  libfontenc-1.1.4-3
-               libglvnd-1.3.2-1  libgudev-234-1  libice-1.0.10-3
-               libinput-1.16.4-1  libomxil-bellagio-0.9.3-3
-               libpciaccess-0.16-2  libpipeline-1.5.3-1  libpng-1.6.37-3
-               libsm-1.2.3-2  libunwind-1.4.0-1  libwacom-1.8-1  libx11-1.7.0-3
-               libxau-1.0.9-3  libxaw-1.0.13-3  libxcb-1.14-1
-               libxcomposite-0.4.5-3  libxcursor-1.2.0-2  libxdamage-1.1.5-3
-               libxdmcp-1.1.3-3  libxext-1.3.4-3  libxfixes-5.0.3-4
-               libxfont2-2.0.4-3  libxft-2.3.3-2  libxi-1.7.10-3
-               libxinerama-1.1.4-3  libxkbfile-1.1.0-2  libxmu-1.1.3-2
-               libxpm-3.5.13-2  libxrandr-1.5.2-3  libxrender-0.9.10-4
-               libxshmfence-1.3-2  libxt-1.2.1-1  libxtst-1.2.3-4
-               libxv-1.0.11-4  libxxf86vm-1.1.4-4  llvm-libs-11.0.1-2
-               lm_sensors-3.6.0-2  man-db-2.9.4-1  mesa-20.3.4-1  mtdev-1.1.6-1
-               pixman-0.40.0-1  vulkan-icd-loader-1.2.166-1  wayland-1.19.0-1
-               xcb-proto-1.14.1-3  xcb-util-0.4.0-3  xcb-util-image-0.4.0-3
-               xcb-util-keysyms-0.4.0-3  xcb-util-renderutil-0.3.9-3
-               xcb-util-wm-0.4.1-3  xf86-input-libinput-0.30.0-1
-               xkeyboard-config-2.31-1  xorg-fonts-alias-100dpi-1.0.4-1
-               xorg-fonts-alias-75dpi-1.0.4-1  xorg-util-macros-1.19.3-1
-               xorgproto-2020.1-1  xf86-video-vesa-2.5.0-1  xorg-bdftopcf-1.1-2
-               xorg-docs-1.7.1-3  xorg-font-util-1.3.2-2
-               xorg-fonts-100dpi-1.0.3-7  xorg-fonts-75dpi-1.0.3-7
-               xorg-fonts-encodings-1.0.5-2  xorg-iceauth-1.0.8-2
-               xorg-mkfontscale-1.2.1-2  xorg-server-1.20.10-3
-               xorg-server-common-1.20.10-3  xorg-server-devel-1.20.10-3
-               xorg-server-xephyr-1.20.10-3  xorg-server-xnest-1.20.10-3
-               xorg-server-xvfb-1.20.10-3  xorg-sessreg-1.1.2-2
-               xorg-setxkbmap-1.3.2-2  xorg-smproxy-1.0.6-3
-               xorg-x11perf-1.6.1-2  xorg-xauth-1.1-2  xorg-xbacklight-1.2.3-2
-               xorg-xcmsdb-1.0.5-3  xorg-xcursorgen-1.0.7-2
-               xorg-xdpyinfo-1.3.2-4  xorg-xdriinfo-1.0.6-2  xorg-xev-1.2.4-1
-               xorg-xgamma-1.0.6-3  xorg-xhost-1.0.8-2  xorg-xinput-1.6.3-2
-               xorg-xkbcomp-1.4.4-1  xorg-xkbevd-1.1.4-3  xorg-xkbutils-1.0.4-4
-               xorg-xkill-1.0.5-2  xorg-xlsatoms-1.1.3-2
-               xorg-xlsclients-1.1.4-2  xorg-xmodmap-1.0.10-2  xorg-xpr-1.0.5-2
-               xorg-xprop-1.2.5-1  xorg-xrandr-1.5.1-2  xorg-xrdb-1.2.0-2
-               xorg-xrefresh-1.0.6-2  xorg-xset-1.2.4-2  xorg-xsetroot-1.1.2-2
-               xorg-xvinfo-1.1.4-2  xorg-xwayland-1.20.0.r844.g1e72c3ce8-1
-               xorg-xwd-1.0.7-2  xorg-xwininfo-1.1.5-2  xorg-xwud-1.0.5-2
-
-Total Download Size:    79.77 MiB
-Total Installed Size:  270.22 MiB
-
-:: Proceed with installation? [Y/n] Y 
 ```
 
 After **xorg** installation, lets add some common font packages:
@@ -1089,8 +1039,6 @@ Now, under the **[LightDM]** section, search for exactly *logind-check-graphical
 
 Save your changes and quit Vim "Esc + :wq".
 
----
-
 In this whole process of downloading **gnome** it is possible that some packages fail to retrieve due to outdated package information. Simply refresh the database with "pacman -Syy".
 
 \* like **apt update** every time you need to install new packages, it is recommended to refresh your database or rsync package information.
@@ -1101,7 +1049,9 @@ Install remaining updates and reboot the system:
 [root@archvb conf.d]# pacman -Syu
 ```
 
-Reboot the system and you should be greeted by your desktop manager.
+Before rebooting your system, use Vim to open **/etc/pacman.conf**. Uncomment the "#Color" line, save and exit (Esc + :wq).
+
+Now, reboot the system.
 
 ## **8. Customizing the Gnome desktop (gnome tweaks & shell extensions)**:
 
@@ -1135,12 +1085,99 @@ I removed English and added Protuguese (Brazil) to keyboard input, enabling my b
 
 ![](images/arch_21.png)
 
+---
+
+Now, open your terminal and lets install Firefox.
+
+```shell
+[sandesvitor@archvb ~]$ sudo pacman -Syy
+[sandesvitor@archvb ~]$ sudo pacman -S firefox chrome-gnome-shell
+```
+
+Open Firefox and search for *gnome extensions*:
+
+![](images/arch_24.png)
 
 
+You'll have to install the browser extension before adding new extensions to your gnome.
+
+![](images/arch_25.png)
+
+After the installation, just search for any extension that you see fit. In my case, I'll download **OpenWeather** and **Just Perfection** (this extension was created by an youtuber called, you guessed it, **Just Perfection**).
+
+![](images/arch_26.png)
+
+![](images/arch_27.png)
+
+----
+
+For my terminal, I updated my profile with the same color pallets as Pop-Os default gnome-terminal.
+
+![](images/arch_23.png)
+
+The color scheme is as follows:
+
+![](images/arch_22.png)
+
+---
+
+--------------- |      Text     |   Background  |
+--------------- | ------------- | ------------- |
+Default Color   |    FFFFFF     |    333333     |
+Bold Color      |      -        |       -       |
+Cursor Color    |    49B9C7     |    F6F6F6     |
+Highlight Color |    FFFFFF     |    48B9C7     |
 
 
+----
+
+Ok, this is cool, but not glorious.
+
+Since **LightDM** is awesome in its configurations, we can up our desktop game by adding another theme to our greeter.
+
+Arch Linux has this thing called Arch User Repository (AUR) that permit us to download easily a bunch of softwares without going the usual *curl/wget* route, like Skype or Steam (check Arch Website for more details https://aur.archlinux.org/).
+
+For now, we will use AUR to download **glorious theme** for lightdm-webkit2. 
+
+Create a **AUR** folder in your user directory:
+
+```shell
+sandesvitor@archvb ~ $ mkdir AUR
+sandesvitor@archvb ~ $ cd AUR
+```
+
+Check if git is downloaded by typing **git --version**. Now, type the following commands:
+
+```shell
+sandesvitor@archvb ~/AUR $ git clone https://aur.archlinux.org/lightdm-webkit2-theme-glorious.git
+```
+
+```shell
+sandesvitor@archvb ~/AUR $ cd lightdm-webkit2-theme-glorious
+```
+
+```shell
+makepkg -sri
+```
+
+After that, run Vim as sudo to edit lightdm-webkit2-greete.conf.
+
+```shell
+sandesvitor@archvb ~/AUR $ sudo vim /etc/lightdm/lighdm-webkit2-greeter.conf
+```
+
+Find *webkit_theme* then set its value to *glorious*.
+Find *debug_mode* then set it to *true*.
+
+
+----
 
 ## References:
 
 - https://www.youtube.com/watch?v=QMBE5Kxb8Bg (most of the process and tutorial);
 - https://www.youtube.com/watch?v=_3-OMUQTf_k&t=392s
+
+----
+
+## *TODO*:
+- [ ] Write bash scripts for downloading useful softawares: VSCode, Steam, Docker, AWS-CLI, kubectl, Virtualbox, Vagrant, Ansible, NVIDEA X Server Settings.
