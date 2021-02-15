@@ -1169,9 +1169,17 @@ sandesvitor@archvb ~/AUR $ sudo vim /etc/lightdm/lighdm-webkit2-greeter.conf
 Find *webkit_theme* then set its value to *glorious*.
 Find *debug_mode* then set it to *true*.
 
+And now...
+
+![](images/arch_28.png)
+
+![](images/arch_29.png)
+
+Nice touch, right?
+
 ---
 
-Another cool tool is **ulauncgher** (https://ulauncher.io/). Since we alread use AUR to download glorious theme, this will be easy.
+Another cool tool is **ulauncher** (https://ulauncher.io/), a really usefull and git adminimalist search bar taht combine with Just Perfection extension. Since we alread use AUR to download glorious theme, this will be easy.
 
 ```shell
 sandesvitor@archvb ~ $ cd AUR
