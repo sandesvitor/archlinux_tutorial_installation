@@ -677,7 +677,7 @@ cd /
 touch swapfile
 ```
 
-Now, we will use the **dd**\* command, to inflate the file with zeros to the size that we want (where the **if** clock is the input file and the **of** block is the path of the newly created swapfile).
+Now, we will use the **dd**\* command, to inflate the file with zeros to the size that we want (where the **if** block is the input file and the **of** block is the path of the newly created swapfile).
 
 \* since recent changes in the kernel we are using the **dd** command and not the **fallocate** command.
 
