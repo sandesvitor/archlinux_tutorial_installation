@@ -1014,6 +1014,11 @@ If you're installing Arch on Virtualbox:
 - mesa
 - mesa-libgl
 
+*Ex:*
+```shell
+[root@archvb conf.d]# pacman -S nvidea nvidea-settings nvidea-utils mesa
+```
+
 ---
 
 ### **INSTALLING DESKTOP ENVIRONMENT (GNOME)**:
@@ -1095,18 +1100,27 @@ This is the most subjective part, and you should tweak around in Gnome to make t
 
 For now, you can just follow along to see how I configure my environmet.
 
-
-Firtly, lets change the theme to a dark theme. Click the "Super Key" ("Windows Key") and type *tweaks* in the search bar.
+Firstly, lets change the theme to a dark theme. Click the "Super Key" ("Windows Key") and type *tweaks* in the search bar.
 
 ![](images/arch_17.png)
 
-Now, go to **Activity** > **Settings**
+*NOTE:* If by any reason **gnome tweak** is not loading, try reinstalling it with pacman:
+
+```shell
+sandesvitor@archvb ~ $ sudo pacman -S gnome-tweak-tool
+```
 
 ![](images/arch_18.png)
+
+Now, go to **Activity** > **Settings**
 
 ![](images/arch_19.png)
 
 I like to create a shortcut to open a terminal, using the "Windows Key" or "Super" + "T".
+
+Name your shortcut (in my case "Terminal Shortcut") and then type the command. 
+
+Note that I use *--zoom=1.2* as an argument to *gnome-terminal*. This was a personal choice to make the terminal a bit bigger in my monitor.
 
 ![](images/arch_20.png)
 
@@ -1233,6 +1247,3 @@ Now, last but not least, since I love System 76 Pop-Os's! theme (as you might ha
 - https://www.youtube.com/watch?v=_3-OMUQTf_k&t=392s
 
 ----
-
-## *TODO*:
-- [ ] Write bash scripts for downloading useful softawares: VSCode, Steam, Docker, AWS-CLI, kubectl, Virtualbox, Vagrant, Ansible, NVIDEA X Server Settings.
