@@ -348,7 +348,7 @@ We'll use the **pacstrap** command, a binary that installs packages to the speci
 Arch comes with two Linux Kernel versions, the LTS and the latest version. For this I will choose the LTS (long term supported, stable older version), because life is too short to use the latest version (as my good old friend André always says).
 
 ```shell
-root@archiso ~ # pacstrap /mnt base linux-lts linux-firmware vim nano bash-completion linux-lts-headers base-devel 
+root@archiso ~ # pacstrap /mnt base linux-lts linux-firmware vim nano git bash-completion linux-lts-headers base-devel 
 ```
 
 \* Note: if you want to install the latest Kernel version replace **linux-lts** and **linux-lts-headers** for **linux** and **linux-headers**.
@@ -800,7 +800,24 @@ Now reboot the system:
 
 Lets make a few general environment modification that will affect every user.
 
-As we did in the pacman mirrorlist at the beginning, we can use two methods for this:
+Firstly, we will enable multilib on pacman.conf file, to be able to install 32 bit supported softwares (in my case, I'm doing this to install Steam).
+
+Simply open **vim /etc/pacman.conf** and search for the following:
+
+```vim
+#[multilib]
+#Include = /etc/pacman.d/mirrorlist
+```
+
+Now, uncomment both lines by removing the "#" and save the file by typing "Esc + :wq".
+
+Update and refresh pacman:
+
+```shell
+[root@archvb /]# pacman -Syu
+```
+
+Now, as we did in the pacman mirrorlist at the beginning, we can use two methods for this:
 
 ### **METHOD 1**:
 
