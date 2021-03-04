@@ -22,6 +22,15 @@ cd sudo-1.9.5p2/
 ./configure
 make && sudo make install 
 
+# Installing postgresql:
+sudo pacman -Sy postgresql --noconfirm
+sudo mkdir /var/lib/postgres/data
+sudo chown postgres /var/lib/postgres/data
+sudo su postgres -c "initdb -D '/var/lib/postgres/data'; exit"
+sudo systemctl start postgresql.service
+sudo systemctl enable postgresql.service
+
+
 # Installing NodeJS:
 sudo pacman - S nodejs npm --noconfirm
 

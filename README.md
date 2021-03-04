@@ -1016,7 +1016,7 @@ If you're installing Arch on Virtualbox:
 
 *Ex:*
 ```shell
-[root@archvb conf.d]# pacman -S nvidea nvidea-settings nvidea-utils mesa
+[root@archvb conf.d]# pacman -S nvidea nvidea-lts nvidea-settings nvidea-utils mesa
 ```
 
 ---
