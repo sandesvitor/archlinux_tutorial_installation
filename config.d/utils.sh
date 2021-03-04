@@ -32,22 +32,22 @@ sudo systemctl enable postgresql.service
 
 
 # Installing NodeJS:
-sudo pacman - S nodejs npm --noconfirm
+sudo pacman - Sy nodejs npm --noconfirm
 
 # Installing pip & pipenv:
-sudo pacman -S python-pip --noconfirm
+sudo pacman -Sy python-pip --noconfirm
 pip install pipenv
 
 # Installing Elixir & Erlang Virtual Machine:
-sudo pacman -S elixir --noconfirm
+sudo pacman -Sy elixir --noconfirm
 
 # Installing Virtualbox:
-sudo pacman -S virtualbox --noconfirm
+sudo pacman -Sy virtualbox --noconfirm
 
 # Installing Docker:
 sudo tee /etc/modules-load.d/loop.conf <<< "loop"
 sudo modprobe loop # if modprobe fails, reboot your system
-sudo pacman -S docker --noconfirm
+sudo pacman -Sy docker --noconfirm
 sudo systemctl start docker.service
 sudo systemctl enable docker.service
 
@@ -65,16 +65,16 @@ unzip awscliv2.zip
 sudo ./aws/install
 
 # Installing Terraform:
-sudo pacman -S terraform --noconfirm
+sudo pacman -Sy terraform --noconfirm
 
 # Installing Ansible:
-sudo pacman -S ansible --noconfirm
+sudo pacman -Sy ansible --noconfirm
 
 # Installing Steam & Proton:
-sudo pacman -S steam --noconfirm
+sudo pacman -Sy steam --noconfirm
 
 # Installing discord:
-sudo pacman -S discord --noconfirm
+sudo pacman -Sy discord --noconfirm
 
 
 if [[ $ANWSER == "Y" ]]; then
