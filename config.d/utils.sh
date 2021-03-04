@@ -1,12 +1,12 @@
 #!/bin/bash
 
 
-read -p "Reboot afeter installation? (Y/n) " ANWSER
+read -p "Reboot after installation? (Y/n) " ANWSER
 
 
 # Create AUR dir in user homepage if not exists:
 # (AUR stands for "Arch User Repository")
-echo "Trying to create AUR directory for cloning community repositories..."
+echo "Trying to create AUR directory for storing cloned community repositories..."
 cd ~
 [ -d AUR ] && echo "Directory alread exists!" || mkdir AUR
 
@@ -73,5 +73,6 @@ if [[ $ANWSER == "Y" ]]; then
     reboot
 else
     echo "Installation completed!"
+    echo "Reboot later!"
     exit 0
 fi
