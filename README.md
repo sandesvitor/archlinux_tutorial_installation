@@ -20,7 +20,7 @@ If you are installing Arch Linux in a virtual machine (using Virtualbox as a Hyp
 
 ## **1. Creating bootable USB flash drive**:
 
-All devices are mounted in the /dev folder. In Linux, if we want to make a USB flash drive bootable, we can use the **dd** command:
+In Linux, all devices are mounted in the /dev folder. If we want to make a USB flash drive bootable, we can use the **dd** command:
 
 ```shell
 [~]$ dd if=archlinux-2021.02.01-x86_64.iso of=/dev/usb bs=4M status=progress && sync
@@ -28,6 +28,16 @@ All devices are mounted in the /dev folder. In Linux, if we want to make a USB f
 
 The **if** (input file) block is where you define the .iso path, and the **of** (output file) block is where you define the **flash driver device location**. The second command **sync** writes any buffered data in memory to the disk, and in this case will boot the computer from the USB.
 
+
+Alternatively, we can use a software called **Etcher** to make our flashdrive bootable (https://www.balena.io/etcher).
+
+![](images/arch_00.png)
+
+Select the path of the *iso* file, then the path for the USB flashdrive, and finally click the **Flash!** button.
+
+After that, you should reboot your PC and enter BIOS setup (In my case I have to keep clicking *F2* or *Del*). Make sure your motherboard is compatibble with UEFI (it probably is). Change the order of boot in your BIOS GUI to make sure the Archlinux bootable USB flashdrive will be the first to boot up.
+
+Save the changes and leave BIOS.
 
 ## **2. Starting the installation process**:
 
