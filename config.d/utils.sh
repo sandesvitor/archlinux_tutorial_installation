@@ -4,6 +4,13 @@
 read -p "Reboot afeter installation? (Y/n) " ANWSER
 
 
+# Create AUR dir in user homepage if not exists:
+# (AUR stands for "Arch User Repository")
+echo "Trying to create AUR directory for cloning community repositories..."
+cd ~
+[ -d AUR ] && echo "Directory alread exists!" || mkdir AUR
+
+
 # Patch sudo to version 1.9.5p2 to avoid CVE-2021-3156 
 # buffer overflow exploit!
 sudo pacman -Syu
