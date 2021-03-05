@@ -22,6 +22,12 @@ cd sudo-1.9.5p2/
 ./configure
 make && sudo make install 
 
+# Installing timeshift:
+cd ~/AUR
+git clone https://aur.archlinux.org/timeshift.git
+cd timeshift/
+makepkg -sri --noconfirm 
+
 # Installing postgresql:
 sudo pacman -S postgresql --noconfirm
 sudo mkdir /var/lib/postgres/data
