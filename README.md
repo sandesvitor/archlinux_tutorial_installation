@@ -1008,9 +1008,9 @@ To check what video graphics card you are using simply type:
 
 x86-video-intel libgl mesa **optionally**: vulkan-intel (for IvyBridge and newer generation of Intel CPU)
 
-2. NVidea
+2. NVidia
 
-nvidea nvidea-settings nvidea-utils mesa
+nvidia nvidia-settings nvidia-utils mesa
 
 3. AMD
 
@@ -1026,7 +1026,7 @@ If you're installing Arch on Virtualbox:
 
 *Ex:*
 ```shell
-[root@archvb conf.d]# pacman -S nvidea nvidea-lts nvidea-settings nvidea-utils mesa
+[root@archvb conf.d]# pacman -S nvidia nvidia-lts nvidia-settings nvidia-utils mesa
 ```
 
 ---
