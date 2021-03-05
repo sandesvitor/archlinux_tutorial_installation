@@ -55,7 +55,7 @@ sudo systemctl enable docker.service
 cd ~/AUR
 git clone https://AUR.archlinux.org/visual-studio-code-bin.git
 cd visual-studio-code-bin/
-makepkg -s
+makepkg -s --noconfirm
 sudo pacman -U visual-studio-code-bin-* --noconfirm
 
 # Installing AWS-CLI (Version 2):
