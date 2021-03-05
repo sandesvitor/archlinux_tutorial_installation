@@ -23,7 +23,7 @@ cd sudo-1.9.5p2/
 make && sudo make install 
 
 # Installing postgresql:
-sudo pacman -Sy postgresql --noconfirm
+sudo pacman -S postgresql --noconfirm
 sudo mkdir /var/lib/postgres/data
 sudo chown postgres /var/lib/postgres/data
 sudo su postgres -c "initdb -D '/var/lib/postgres/data'; exit"
@@ -32,22 +32,22 @@ sudo systemctl enable postgresql.service
 
 
 # Installing NodeJS:
-sudo pacman - Sy nodejs npm --noconfirm
+sudo pacman - S nodejs npm --noconfirm
 
 # Installing pip & pipenv:
-sudo pacman -Sy python-pip --noconfirm
+sudo pacman -S python-pip --noconfirm
 pip install pipenv
 
 # Installing Elixir & Erlang Virtual Machine:
-sudo pacman -Sy elixir --noconfirm
+sudo pacman -S elixir --noconfirm
 
 # Installing Virtualbox:
-sudo pacman -Sy virtualbox --noconfirm
+sudo pacman -S virtualbox --noconfirm
 
 # Installing Docker:
 sudo tee /etc/modules-load.d/loop.conf <<< "loop"
 sudo modprobe loop # if modprobe fails, reboot your system
-sudo pacman -Sy docker --noconfirm
+sudo pacman -S docker --noconfirm
 sudo systemctl start docker.service
 sudo systemctl enable docker.service
 
@@ -65,16 +65,16 @@ unzip awscliv2.zip
 sudo ./aws/install
 
 # Installing Terraform:
-sudo pacman -Sy terraform --noconfirm
+sudo pacman -S terraform --noconfirm
 
 # Installing Ansible:
-sudo pacman -Sy ansible --noconfirm
+sudo pacman -S ansible --noconfirm
 
 # Installing Steam & Proton:
-sudo pacman -Sy steam --noconfirm
+sudo pacman -S steam --noconfirm
 
 # Installing discord:
-sudo pacman -Sy discord --noconfirm
+sudo pacman -S discord --noconfirm
 
 
 if [[ $ANWSER == "Y" ]]; then
