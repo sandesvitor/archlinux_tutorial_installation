@@ -198,15 +198,67 @@ From the manual page, the **lsblk**:
 
 *...lists information about all available or the specified block devices. The lsblk command reads the sysfs filesystem and udev db to gather information. If the udev db is not available or lsblk is compiled without udev support, then it tries to read LABELs, UUIDs and filesystem types from the block device. In this case root permissions are necessary. The command prints all block devices (except RAM disks) in a tree-like format by default.  Use lsblk --help to get a list of all available columns.*
 
-In my case, my available drive is the *sda*, with 50G of free memory.
 
 We will use the **gdisk** utility to manage our partitions (better for EFI type of installation than fdisk).
 
-Now, pass the device location to the gdisk:
+---
+
+*NOTE: When testing on **Virtualbox**, I used 50 Gb of available drive, with my device sda not containing any prior partitions (this will be shown in the examples bellow). However, when installing it on my desktop, I stumbled with my alread partitioned device into four partitions (from my previous Pop-Os! installation). In this case, I didn't even wipe out all data from the device, but delete the partitions and then continued the default configuration. Therefore, use **gdisk** to delete all partitions with the **d** command, one for each partitions*.
+
+*Pass the device location to the gdisk*:
 
 ```shell
 root@archiso ~ # gdisk /dev/sda 
 ```
+
+*Type **?** for the list of commands*:
+
+```shell
+sandesvitor@archdesktop ~ $ sudo gdisk /dev/sda
+[sudo] password for sandesvitor: 
+GPT fdisk (gdisk) version 1.0.6
+
+Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: present
+
+Found valid GPT with protective MBR; using GPT.
+
+Command (? for help): ?
+b	back up GPT data to a file
+c	change a partition's name
+d	delete a partition
+i	show detailed information on a partition
+l	list known partition types
+n	add a new partition
+o	create a new empty GUID partition table (GPT)
+p	print the partition table
+q	quit without saving changes
+r	recovery and transformation options (experts only)
+s	sort partitions
+t	change a partition's type code
+v	verify disk
+w	write table to disk and exit
+x	extra functionality (experts only)
+?	print this menu
+```
+
+*Type **d** and, when prompted, type the number of the partition*:
+
+```shell
+Command (? for help): d
+Partition number (1-3): 
+```
+
+*You must do it for all partitions*.
+
+---
+
+Great!
+
+Now, with your device cleaned of partitions, we will create our own partitions.
 
 In the first step, we will configure the **sda1 partition**, that will be our **boot partition**:
 
