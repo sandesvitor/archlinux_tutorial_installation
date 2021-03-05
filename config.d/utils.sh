@@ -36,7 +36,7 @@ sudo pacman - S nodejs npm --noconfirm
 
 # Installing pip & pipenv:
 sudo pacman -S python-pip --noconfirm
-pip install pipenv
+sudo pip install pipenv
 
 # Installing Elixir & Erlang Virtual Machine:
 sudo pacman -S elixir --noconfirm
