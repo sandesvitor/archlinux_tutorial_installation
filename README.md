@@ -1024,9 +1024,10 @@ If you're installing Arch on Virtualbox:
 - mesa
 - mesa-libgl
 
-*Ex:*
+*For my desktop I used:*
+
 ```shell
-[root@archvb conf.d]# pacman -S nvidia nvidia-lts nvidia-settings nvidia-utils mesa
+[root@archvb conf.d]# pacman -S nvidia nvidia-lts nvidia-settings nvidia-utils mesa lib32-nvidia-libgl
 ```
 
 ---
