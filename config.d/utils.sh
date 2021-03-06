@@ -25,6 +25,12 @@ cd sudo-1.9.5p2/
 ./configure
 make && sudo make install 
 
+# Installing net-tools:
+sudo pacman -S net-tools --noconfirm
+
+# Installing arch-audit:
+sudo pacman -S arch-audit --noconfirm
+
 # Installing timeshift:
 cd ~/AUR
 git clone https://aur.archlinux.org/timeshift.git
@@ -32,16 +38,16 @@ cd timeshift/
 makepkg -sri --noconfirm 
 
 # Installing clamav (Antivirus):
-sudo pacman -S clamav
+sudo pacman -S clamav --noconfirm
 sudo freshclam # to update virus definition
 sudo systemctl start clamav-freshclam.service
 sudo systemctl enable clamav-freshclam.service
 sudo systemctl start clamav-daemon.service
 sudo systemctl enable clamav-daemon.service
-sudo pacman -S clamtk # ===> GUI for CLAMAV!
+sudo pacman -S clamtk --noconfirm # ===> GUI for CLAMAV!
 
 # Installing Firewalld:
-sudo pacman -S firewalld
+sudo pacman -S firewalld --noconfirm
 sudo systemctl start firewalld.service
 sudo systemctl enable firewalld.service
 
@@ -97,7 +103,8 @@ sudo pacman -S terraform --noconfirm
 # Installing Ansible:
 sudo pacman -S ansible --noconfirm
 
-
+# Installing Flameshot:
+sudo pacman -S flameshot --noconfirm
 
 #################################################################
 ########################   Fun!   ###############################
