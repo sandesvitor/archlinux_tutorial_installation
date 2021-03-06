@@ -11,6 +11,9 @@ cd ~
 [ -d AUR ] && echo "Directory alread exists!" || mkdir AUR
 
 
+#################################################################
+######################   Security   #############################
+
 # Patch sudo to version 1.9.5p2 to avoid CVE-2021-3156 
 # buffer overflow exploit!
 sudo pacman -Syu
@@ -27,6 +30,24 @@ cd ~/AUR
 git clone https://aur.archlinux.org/timeshift.git
 cd timeshift/
 makepkg -sri --noconfirm 
+
+# Installing clamav (Antivirus):
+sudo pacman -S clamav
+sudo freshclam # to update virus definition
+sudo systemctl start clamav-freshclam.service
+sudo systemctl enable clamav-freshclam.service
+sudo systemctl start clamav-daemon.service
+sudo systemctl enable clamav-daemon.service
+sudo pacman -S clamtk # ===> GUI for CLAMAV!
+
+# Installing Firewalld:
+sudo pacman -S firewalld
+sudo systemctl start firewalld.service
+sudo systemctl enable firewalld.service
+
+
+#################################################################
+######################   Utility    #############################
 
 # Installing postgresql:
 sudo pacman -S postgresql --noconfirm
@@ -76,7 +97,12 @@ sudo pacman -S terraform --noconfirm
 # Installing Ansible:
 sudo pacman -S ansible --noconfirm
 
-# Installing Steam & Proton:
+
+
+#################################################################
+########################   Fun!   ###############################
+
+# Installing Steam:
 sudo pacman -S steam --noconfirm
 
 # Installing discord:
