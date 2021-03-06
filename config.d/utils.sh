@@ -116,6 +116,23 @@ sudo pacman -S steam --noconfirm
 sudo pacman -S discord --noconfirm
 
 
+#################################################################
+################## Initial Security Analysis ####################
+cd ~
+echo "<<<<<<<<<<<<<<<<<<<< INITIAL SECURITY ANALYSIS >>>>>>>>>>>>>>>>>>>>" >> security_analysis.txt
+echo "" >> security_analysis.txt
+echo "" >> security_analysis.txt
+echo "Ports scan with 'sudo netstat -tulpn'" >> security_analysis.txt
+echo "" >> security_analysis.txt
+sudo netstat -tulpn >> security_analysis.txt
+echo "" >> security_analysis.txt
+echo "Dependencies vulnerabilyties with arch-audit:" >> security_analysis.txt
+echo "" >> security_analysis.txt
+arch-audit >> security_analysis.txt
+
+
+
+
 if [[ $ANWSER == "Y" ]]; then
     echo "Rebooting..."
     reboot
