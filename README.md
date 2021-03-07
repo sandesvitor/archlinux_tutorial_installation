@@ -18,7 +18,8 @@ If you are installing Arch Linux in a virtual machine (using Virtualbox as a Hyp
 ![](images/arch_0.png)
 
 
-## **1. Creating bootable USB flash drive**:
+<details><summary>## **1. Creating bootable USB flash drive**:<summary>
+<p>
 
 In Linux, all devices are mounted in the /dev folder. If we want to make a USB flash drive bootable, we can use the **dd** command:
 
@@ -463,6 +464,8 @@ Much better!
 Now it's time to switch to inside our actual Arch installation and resume the process from there, using **arch-chroot** command. From the Linux manual page:
 
 *arch-chroot wraps the chroot(1) command while ensuring that important functionality is available, e.g. mounting /dev/, /proc and other API filesystems, or exposing resolv.conf(5) to the chroot. If command is unspecified, arch-chroot will launch /bin/bash.*
+
+The **chroot** command, for instance, change a particular directory to be the new root directory, so once you're a inside the **chrooted** space, you cannot access any directory above it, and also not allowed to use any program of the directories above it (that's why **pacstrap** is used), therefore the term **chroot jail**. TO leave a chrooted space you'll need to run **exit** command.
 
 ```shell
 root@archiso ~ # arch-chroot /mnt
@@ -1306,6 +1309,7 @@ Now, last but not least, since I love System 76 Pop-Os's! theme (as you might ha
 
 ## References:
 
+- https://wiki.archlinux.org/index.php/installation_guide
 - https://www.youtube.com/watch?v=QMBE5Kxb8Bg (most of the process and tutorial);
 - https://www.youtube.com/watch?v=_3-OMUQTf_k&t=392s
 
