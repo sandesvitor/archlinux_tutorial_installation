@@ -115,6 +115,9 @@ sudo pacman -S steam --noconfirm
 # Installing discord:
 sudo pacman -S discord --noconfirm
 
+# Installing obs-studio:
+sudo pacman -S obs-studio
+
 
 #################################################################
 ################## Initial Security Analysis ####################
