@@ -746,8 +746,10 @@ Now, we will use the **dd**\* command, to inflate the file with zeros to the siz
 
 \* since recent changes in the kernel we are using the **dd** command and not the **fallocate** command.
 
+Well, the swap size is a endless discussion that I'll not enter in here. In my case I'll reserve 2GB because my SSD is not that big, and I should't need more than that (many people reserve half of the size of RAM, or the same amount with they're worried about hibernating).
+
 ```shell
-[root@archlinux /]# dd if=/dev/zero of=/swapfile bs=1M count=1000
+[root@archlinux /]# dd if=/dev/zero of=/swapfile bs=1M count=4000
 1000+0 records in
 1000+0 records out
 1048576000 bytes (1.0 GB, 1000 MiB) copied, 0.97697 s, 1.1 GB/s
